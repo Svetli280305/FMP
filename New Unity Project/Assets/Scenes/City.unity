@@ -220,7 +220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &288589626
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1278,8 +1278,6 @@ GameObject:
   - component: {fileID: 2599155747701243843}
   - component: {fileID: 2599155747701243842}
   - component: {fileID: 2599155747701243870}
-  - component: {fileID: 2599155747701243872}
-  - component: {fileID: 2599155747701243871}
   m_Layer: 0
   m_Name: First Person Player
   m_TagString: Player
@@ -1307,31 +1305,7 @@ MonoBehaviour:
   groundDistance: 0.6
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
---- !u!114 &2599155747701243871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599155747701243869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ddc56b3ecd0c9447a7d9e6a00e33aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2599155747701243872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599155747701243869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598d2749007b40444bee18c5d1360c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    m_Bits: 8
 --- !u!4 &2599155747846415168
 Transform:
   m_ObjectHideFlags: 0
