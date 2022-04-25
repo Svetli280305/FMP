@@ -1,98 +1,48 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
-public class NPC : Interactible
-{
-    DialogueSystem dialogueSystem;
-    [SerializeField] bool isApple;
-    [SerializeField] bool isTrash;
-    [SerializeField] bool isRing;
-    bool isSpokenTo;
+[System.Serializable]
+public class NPC : MonoBehaviour {
 
-    [SerializeField] Dialogue firstDialog;
-    [SerializeField] Dialogue duringDialog;
-    [SerializeField] Dialogue doneDialog;
+    public Transform ChatBackGround;
+    public Transform NPCCharacter;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        isSpokenTo = false;
-    }
+    private DialogueSystem dialogueSystem;
 
-    // Update is called once per frame
-    public override void Interact()
-    {
-        
+    public string Name;
+
+    [TextArea(5, 10)]
+    public string[] sentences;
+
+    void Start () {
         dialogueSystem = FindObjectOfType<DialogueSystem>();
-        Debug.Log(isApple);
-        if(isApple == false && isRing == false && isTrash == false)
-        {
-            Debug.Log("eee");
-            if(!dialogueSystem.inDialogue)
-            {
-                dialogueSystem.StartDialogue(GetComponent<Dialogue>());
-            }
-        }
-        else
-        {
-            if(isApple)
-            {
-                //Debug.Log("aaa");
-                //if(!isSpokenTo)
-                //{
-                    //dialogueSystem.StartDialogue(firstDialog);
-                    //FindObjectOfType<QuestTracker>().startedApple = true;
-                //}
-                //else if(FindObjectOfType<QuestTracker>().collectedAllApple)
-                //{
-                    //dialogueSystem.StartDialogue(doneDialog);
-                    //QuestTracker.appleQuestDone = true;
-                //}
-                //else if(isSpokenTo)
-                //{
-                    //dialogueSystem.StartDialogue(duringDialog);
-                //}
-            }
-            else if(isTrash)
-            {
-                if(!isSpokenTo)
-                {
-                    dialogueSystem.StartDialogue(firstDialog);
-                    //FindObjectOfType<QuestTracker>().startedTrash = true;
-                }
-                //else if(FindObjectOfType<QuestTracker>().collectedAllTrash)
-                //{
-                    //dialogueSystem.StartDialogue(doneDialog);
-                    //QuestTracker.trashQuestDone = true;
-                //}
-                else if(isSpokenTo)
-                {
-                    dialogueSystem.StartDialogue(duringDialog);
-                }
-            }
-            else if(isRing)
-            {
-                if(!isSpokenTo)
-                {
-                    dialogueSystem.StartDialogue(firstDialog);
-                    //FindObjectOfType<QuestTracker>().startedRing = true;
-                }
-                //else if(FindObjectOfType<QuestTracker>().collectedAllRing)
-                //{
-                    //dialogueSystem.StartDialogue(doneDialog);
-                    //QuestTracker.ringQuestDone = true;
-                //}
-                else if(isSpokenTo)
-                {
-                    dialogueSystem.StartDialogue(duringDialog);
-                }
-            }
-
-        }
-        isSpokenTo = true;
-
-        
     }
-    
+	
+	void Update () {
+          Vector3 Pos = Camera.main.WorldToScreenPoint(NPCCharacter.position);
+          Pos.y += 175;
+          ChatBackGround.position = Pos;
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        this.gameObject.GetComponent<NPC>().enabled = true;
+        FindObjectOfType<DialogueSystem>().EnterRangeOfNPC();
+        if ((other.gameObject.tag == "Player") && Input.GetKeyDown(KeyCode.F))
+        {
+            this.gameObject.GetComponent<NPC>().enabled = true;
+            dialogueSystem.Names = Name;
+            dialogueSystem.dialogueLines = sentences;
+            FindObjectOfType<DialogueSystem>().NPCName();
+        }
+    }
+
+    public void OnTriggerExit()
+    {
+        FindObjectOfType<DialogueSystem>().OutOfRange();
+        this.gameObject.GetComponent<NPC>().enabled = false;
+    }
 }
+

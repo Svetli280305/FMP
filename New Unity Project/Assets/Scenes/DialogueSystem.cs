@@ -1,84 +1,171 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
-using TMPro;
 
+public class DialogueSystem: MonoBehaviour {
 
-public class DialogueSystem : MonoBehaviour
-{
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI dialogueText;
-    [SerializeField] GameObject dialogueUI;
-    [SerializeField] GameObject otherUI;
-    private Dialogue currentDialogue;
-    private Interactible currentNPC;
-    public bool inDialogue = false;
+    public Text nameText;
+    public Text dialogueText;
 
-    public Queue<string> sentences;
-    // Start is called before the first frame update
+    public GameObject dialogueGUI;
+    public Transform dialogueBoxGUI;
+
+    public float letterDelay = 0.1f;
+    public float letterMultiplier = 0.5f;
+
+    public KeyCode DialogueInput = KeyCode.F;
+
+    public string Names;
+
+    public string[] dialogueLines;
+
+    public bool letterIsMultiplied = false;
+    public bool dialogueActive = false;
+    public bool dialogueEnded = false;
+    public bool outOfRange = true;
+
+    public AudioClip audioClip;
+    AudioSource audioSource;
+
     void Start()
     {
-        sentences = new Queue<string>();
+        audioSource = GetComponent<AudioSource>();
+        dialogueText.text = "";
     }
 
-    void LateUpdate()
+    void Update()
     {
-        dialogueUI.SetActive(inDialogue);
-        otherUI.SetActive(!inDialogue);
-        if(inDialogue)
+
+    }
+
+    public void EnterRangeOfNPC()
+    {
+        outOfRange = false;
+        dialogueGUI.SetActive(true);
+        if (dialogueActive == true)
         {
-            if(Input.GetButtonDown("Jump"))
+            dialogueGUI.SetActive(false);
+        }
+    }
+
+    public void NPCName()
+    {
+        outOfRange = false;
+        dialogueBoxGUI.gameObject.SetActive(true);
+        nameText.text = Names;
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (!dialogueActive)
             {
-                DisplayNextSentence();
+                dialogueActive = true;
+                StartCoroutine(StartDialogue());
             }
         }
+        StartDialogue();
     }
 
-    // Update is called once per frame
-    public void StartDialogue(Dialogue dialogue)
+    private IEnumerator StartDialogue()
     {
-        nameText.text = dialogue.name;
-        sentences.Clear();
-        currentDialogue = dialogue;
-        currentNPC = dialogue.gameObject.GetComponent<Interactible>();
-        inDialogue = true;
-       // FindObjectOfType<MouseLook>().Focus(dialogue.transform);
-       // FindObjectOfType<PlayerMovement>().LockMovement();
-
-        foreach (string sentence in dialogue.sentences)
+        if (outOfRange == false)
         {
-            sentences.Enqueue(sentence);
-        }
-        DisplayNextSentence();
-    }
+            int dialogueLength = dialogueLines.Length;
+            int currentDialogueIndex = 0;
 
-    public void DisplayNextSentence()
-    {
-        if (sentences.Count == 0)
-        {
-            EndDialogue();
-            return;
-        }
-        
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
-    }
+            while (currentDialogueIndex < dialogueLength || !letterIsMultiplied)
+            {
+                if (!letterIsMultiplied)
+                {
+                    letterIsMultiplied = true;
+                    StartCoroutine(DisplayString(dialogueLines[currentDialogueIndex++]));
 
-    IEnumerator TypeSentence(string sentence)
-    {
-        dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
-        {
-            dialogueText.text += letter;
-            yield return null;
+                    if (currentDialogueIndex >= dialogueLength)
+                    {
+                        dialogueEnded = true;
+                    }
+                }
+                yield return 0;
+            }
+
+            while (true)
+            {
+                if (Input.GetKeyDown(DialogueInput) && dialogueEnded == false)
+                {
+                    break;
+                }
+                yield return 0;
+            }
+            dialogueEnded = false;
+            dialogueActive = false;
+            DropDialogue();
         }
     }
 
-    void EndDialogue()
+    private IEnumerator DisplayString(string stringToDisplay)
     {
-        inDialogue = false;
-        //FindObjectOfType<MouseLook>().Unfocus();
-        //FindObjectOfType<PlayerMovement>().UnlockMovement();
+        if (outOfRange == false)
+        {
+            int stringLength = stringToDisplay.Length;
+            int currentCharacterIndex = 0;
+
+            dialogueText.text = "";
+
+            while (currentCharacterIndex < stringLength)
+            {
+                dialogueText.text += stringToDisplay[currentCharacterIndex];
+                currentCharacterIndex++;
+
+                if (currentCharacterIndex < stringLength)
+                {
+                    if (Input.GetKey(DialogueInput))
+                    {
+                        yield return new WaitForSeconds(letterDelay * letterMultiplier);
+
+                        if (audioClip) audioSource.PlayOneShot(audioClip, 0.5F);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(letterDelay);
+
+                        if (audioClip) audioSource.PlayOneShot(audioClip, 0.5F);
+                    }
+                }
+                else
+                {
+                    dialogueEnded = false;
+                    break;
+                }
+            }
+            while (true)
+            {
+                if (Input.GetKeyDown(DialogueInput))
+                {
+                    break;
+                }
+                yield return 0;
+            }
+            dialogueEnded = false;
+            letterIsMultiplied = false;
+            dialogueText.text = "";
+        }
+    }
+
+    public void DropDialogue()
+    {       
+        dialogueGUI.SetActive(false);
+        dialogueBoxGUI.gameObject.SetActive(false);
+    }
+
+    public void OutOfRange()
+    {
+        outOfRange = true;
+        if (outOfRange == true)
+        {
+            letterIsMultiplied = false;
+            dialogueActive = false;
+            StopAllCoroutines();
+            dialogueGUI.SetActive(false);
+            dialogueBoxGUI.gameObject.SetActive(false);
+        }
     }
 }
