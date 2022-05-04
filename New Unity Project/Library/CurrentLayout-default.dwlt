@@ -420,10 +420,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 176}
-      m_SelectedIDs: 6a580000
-      m_LastClickedID: 22634
-      m_ExpandedIDs: baf6ffffe8f6ffff08f7ffff50f8ffffb0570000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 52fbffff043e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -439,7 +439,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 9}
+        m_ClientGUIView: {fileID: 0}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -483,9 +483,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1011.06445, y: 1.2721462, z: -22.202206}
+    m_Target: {x: 585.1799, y: 90.67884, z: -46.47289}
     speed: 2
-    m_Value: {x: 1011.06445, y: 1.2721462, z: -22.202206}
+    m_Value: {x: 587.91046, y: 92.45637, z: -42.83904}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -532,13 +532,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.5626159, y: 0.13060585, z: -0.09054714, w: -0.81133056}
+    m_Target: {x: -0.40621838, y: -0.11446317, z: 0.05120265, w: -0.9051782}
     speed: 2
-    m_Value: {x: -0.56190675, y: 0.13668364, z: -0.09476178, w: -0.8103077}
+    m_Value: {x: -0.4048431, y: -0.114535026, z: 0.051028717, w: -0.9057483}
   m_Size:
-    m_Target: 110.944885
+    m_Target: 270.26245
     speed: 2
-    m_Value: 110.944885
+    m_Value: 282.9973
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -662,22 +662,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\syotov2021\Documents\FMP\New Unity Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ac490000
-    m_LastClickedID: 18860
-    m_ExpandedIDs: 00000000a649000000ca9a3b
+    m_SelectedIDs: 44400000
+    m_LastClickedID: 16452
+    m_ExpandedIDs: 000000004440000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -705,7 +705,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a6490000
+    m_ExpandedIDs: 0000000044400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
