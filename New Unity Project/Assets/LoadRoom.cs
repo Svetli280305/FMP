@@ -8,6 +8,8 @@ public class LoadRoom : MonoBehaviour
     [SerializeField] int sceneToLoad;
 
     bool active = false;
+    public bool outOfRange = true;
+    [SerializeField] GameObject doorGUI;
 
     private void Update()
     {
@@ -26,6 +28,7 @@ public class LoadRoom : MonoBehaviour
         if (other.gameObject.tag=="Player")
         {
             active = true;
+            doorGUI.SetActive(true);
         }
     }
 
@@ -34,6 +37,8 @@ public class LoadRoom : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             active = false;
+            doorGUI.SetActive(false);
         }
     }
 }
+
