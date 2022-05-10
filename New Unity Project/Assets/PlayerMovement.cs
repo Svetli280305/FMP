@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject bag;
+    public GameObject passport;
     public CharacterController controller;
     
+    public bool hasBag = false;
+    public bool hasPassport = false;
+
     public float speed = 12f;
     public float gravity =-9.81f;
     public float jumpHeight = 3f;
