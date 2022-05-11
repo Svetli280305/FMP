@@ -6,10 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject bag;
     public GameObject passport;
+    public GameObject food;
+    public GameObject water;
     public CharacterController controller;
     
     public bool hasBag = false;
     public bool hasPassport = false;
+    public bool hasFood = false;
+    public bool hasWater = false;
 
     public float speed = 12f;
     public float gravity =-9.81f;

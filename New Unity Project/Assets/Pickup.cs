@@ -22,6 +22,14 @@ public class Pickup : MonoBehaviour
         if(pm.passport){
             pm.passport.SetActive(false);
         }
+        if (pm.food)
+        {
+            pm.food.SetActive(false);
+        }
+        if (pm.water)
+        {
+            pm.water.SetActive(false);
+        }
     }
 
     void OnTriggerStay(Collider coll)
@@ -40,6 +48,18 @@ public class Pickup : MonoBehaviour
                 pm.passport = gameObject;
                 pm.hasPassport = true;
                 
+            }
+            if (Input.GetKeyDown(KeyCode.E) && gameObject.CompareTag("Food"))
+            {
+                pm.food = gameObject;
+                pm.hasFood = true;
+
+            }
+            if (Input.GetKeyDown(KeyCode.E) && gameObject.CompareTag("Water"))
+            {
+                pm.water = gameObject;
+                pm.hasWater = true;
+
             }
         }
     }
