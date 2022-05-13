@@ -26,9 +26,21 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+    void Start()
+    {
+        hasBag = PlayerInfo.hasBag;
+        hasFood = PlayerInfo.hasFood;
+        hasPassport = PlayerInfo.hasPassport;
+        hasWater = PlayerInfo.hasWater;
+    }
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(PlayerInfo.hasWater);
+        PlayerInfo.hasBag = hasBag;
+        PlayerInfo.hasPassport = hasPassport;
+        PlayerInfo.hasFood = hasFood;
+        PlayerInfo.hasWater = hasWater;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0)

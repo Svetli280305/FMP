@@ -66,7 +66,11 @@ public class Pickup : MonoBehaviour
     
     void OnDisable()
     {
-        doorGUI.SetActive(false);
+        if(doorGUI != null)
+        {
+            doorGUI.SetActive(false);
+        }
+        
     }
 
     void OnTriggerExit(Collider coll)
