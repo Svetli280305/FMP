@@ -20938,8 +20938,10 @@ MonoBehaviour:
   Name: Tom
   preConditionSentences:
   - Passport please!
+  - You can't go on until you show me your passport.
   postConditionSentences:
   - Passport please!
+  - Get on keep it moving.
 --- !u!136 &1012240880
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -24696,8 +24698,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201028357}
   m_LocalRotation: {x: -0, y: 0.049492702, z: -0, w: 0.9987745}
-  m_LocalPosition: {x: -136.8, y: 9.8, z: 15.7}
-  m_LocalScale: {x: 46.326786, y: 31.83021, z: 312.05453}
+  m_LocalPosition: {x: -143.3, y: 9.8, z: -49.2}
+  m_LocalScale: {x: 46.326786, y: 31.83021, z: 192.85971}
   m_Children: []
   m_Father: {fileID: 992780556}
   m_RootOrder: 31
@@ -33923,7 +33925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655815002}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 830.91, y: 47.57, z: 65.799}
+  m_LocalPosition: {x: 761.7, y: 47.57, z: 65.8}
   m_LocalScale: {x: 5.6861, y: 5.6861, z: 5.6861}
   m_Children:
   - {fileID: 727475665}
