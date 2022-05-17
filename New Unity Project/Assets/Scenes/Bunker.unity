@@ -338,7 +338,7 @@ MonoBehaviour:
   Water: 1
   ChatBackGround: {fileID: 673637082}
   NPCCharacter: {fileID: 779371280}
-  Name: Tom
+  Name: 
   preConditionSentences:
   - Hey stranger.
   - Im so thirsty. Do you happen to have some water?
