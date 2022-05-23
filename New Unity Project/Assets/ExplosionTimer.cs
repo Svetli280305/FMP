@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ExplosionTimer : MonoBehaviour
 {
+    public float time = 1.0f;
     float timeInScene = 0f;
 
     void Update()
     {
         timeInScene += Time.deltaTime;
-        if(timeInScene >= 1)
+        if(timeInScene >= time)
         {
             SceneManager.LoadScene(3);
         }
